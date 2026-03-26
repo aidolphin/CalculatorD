@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorD | Mortgage, BMI, TDEE, Percentage, Currency, Unit and Utility Calculators</title>
+    <meta name="description" content="CalculatorD is a mobile-friendly calculator workspace for mortgage planning, BMI and TDEE, percentage math, unit conversion, currency rates, age checks, and professional utility tools.">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="application-name" content="CalculatorD">
+    <meta name="theme-color" content="#0f6adf">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CalculatorD">
+    <meta property="og:title" content="CalculatorD | Everyday financial, health, math, and utility calculators">
+    <meta property="og:description" content="A practical calculator workspace built for mortgages, fitness numbers, study needs, and technical day-to-day tasks.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CalculatorD">
+    <meta name="twitter:description" content="Financial, health, math, and utility calculators in one mobile-friendly web app.">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "CalculatorD",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "creator": {
+                "@type": "Organization",
+                "name": "Quantum Leaf Automation"
+            },
+            "description": "CalculatorD brings together practical financial, health, academic, and utility calculators in one web application."
+        }
+    </script>
+</head>
+<body>
+    <div class="app-shell">
+        <header id="app-header" class="app-header">
+            <div class="brand-bar">
+                <div class="brand-lockup">
+                    <span class="brand-kicker">Developed for practical everyday work</span>
+                    <h1 class="brand-title">CalculatorD</h1>
+                </div>
+                <div class="brand-actions">
+                    <button id="nav-toggle" class="ghost-button nav-toggle" type="button">Menu</button>
+                    <button id="theme-toggle" class="ghost-button" type="button">Theme</button>
+                    <a class="ghost-link" href="#history-panel">History</a>
+                </div>
+            </div>
+            <nav id="top-nav" class="top-nav">
+                <a href="#finance">Wealth</a>
+                <a href="#health">Lifestyle</a>
+                <a href="#math">Academic</a>
+                <a href="#utility">Utility</a>
+                <a href="#about">About</a>
+            </nav>
+        </header>
+
+        <div class="layout">
+            <aside id="history-panel" class="history-panel">
+                <div class="panel-header">
+                    <h2>Recent Calculations</h2>
+                    <button id="clear-history" class="ghost-button small-button" type="button">Clear</button>
+                </div>
+                <p class="panel-copy">Open a recent result and keep going without typing everything again.</p>
+                <div id="history-list" class="history-list"></div>
+            </aside>
+
+            <main class="dashboard">
+                <section id="finance" class="category">
+                    <div class="section-heading">
+                        <span>Wealth</span>
+                        <h2>Financial & Real Estate</h2>
+                    </div>
+                    <div class="section-nav">
+                        <a href="#mortgage-tool">Mortgage</a>
+                        <a href="#compound-tool">Compound</a>
+                        <a href="#inflation-tool">Inflation</a>
+                        <a href="#currency-tool">Currency</a>
+                        <a href="#investment-tool">Investment</a>
+                    </div>
+
+                    <div class="card-grid">
+                        <article id="mortgage-tool" class="tool-card featured-card">
+                            <h3>Mortgage Planner</h3>
+                            <p class="tool-copy">Monthly payment, housing cost, yearly amortization, extra payment savings, taxes, and downloadable summary.</p>
+                            <div class="form-grid">
+                                <label>Loan Amount<input id="mortgage-loan" type="number" value="425000"></label>
+                                <label>Rate %<input id="mortgage-rate" type="number" value="6.25" step="0.01"></label>
+                                <label>Term Value<input id="mortgage-term" type="number" value="30"></label>
+                                <label>Term Unit
+                                    <select id="mortgage-term-unit">
+                                        <option value="years">Years</option>
+                                        <option value="months">Months</option>
+                                    </select>
+                                </label>
+                                <label>Rate Type
+                                    <select id="mortgage-rate-type">
+                                        <option value="fixed">Fixed Annual Rate</option>
+                                        <option value="apr">APR Estimate</option>
+                                    </select>
+                                </label>
+                                <label>Down Payment<input id="mortgage-down" type="number" value="50000"></label>
+                                <label>Annual Property Tax<input id="mortgage-tax" type="number" value="3600"></label>
+                                <label>Annual Home Insurance<input id="mortgage-insurance" type="number" value="1200"></label>
+                                <label>Monthly PMI<input id="mortgage-pmi" type="number" value="120"></label>
+                                <label>Extra Monthly Payment<input id="mortgage-extra" type="number" value="200"></label>
+                                <label>Annual Income<input id="mortgage-income" type="number" value="110000"></label>
+                                <label>Filing Status
+                                    <select id="mortgage-status">
+                                        <option value="Single">Single</option>
+                                        <option value="MarriedJoint">Married Joint</option>
+                                        <option value="HeadOfHousehold">Head of Household</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="button-row">
+                                <button id="mortgage-submit" type="button">Calculate Mortgage</button>
+                                <button id="mortgage-report" class="ghost-button" type="button">Download Report</button>
+                                <button id="mortgage-email" class="ghost-button" type="button">Email Summary</button>
+                            </div>
+                            <div id="mortgage-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="compound-tool" class="tool-card">
+                            <h3>Compound Interest</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Starting Amount<input id="compound-principal" type="number" value="10000"></label>
+                                <label>Monthly Contribution<input id="compound-monthly" type="number" value="300"></label>
+                                <label>Annual Rate %<input id="compound-rate" type="number" value="8" step="0.1"></label>
+                                <label>Years<input id="compound-years" type="number" value="20"></label>
+                                <label>Compounding
+                                    <select id="compound-frequency">
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Quarterly">Quarterly</option>
+                                        <option value="Annually">Annually</option>
+                                        <option value="Daily">Daily</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button id="compound-submit" type="button">Calculate Growth</button>
+                            <div id="compound-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="inflation-tool" class="tool-card">
+                            <h3>Inflation Calculator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Amount<input id="inflation-amount" type="number" value="100"></label>
+                                <label>From Year<input id="inflation-from-year" type="number" value="2000"></label>
+                                <label>To Year<input id="inflation-to-year" type="number" value="2026"></label>
+                                <label>Annual Rate %<input id="inflation-rate" type="number" value="3" step="0.1"></label>
+                            </div>
+                            <button id="inflation-submit" type="button">Estimate Buying Power</button>
+                            <div id="inflation-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="currency-tool" class="tool-card">
+                            <h3>Currency Converter</h3>
+                            <p class="tool-copy">Uses live exchange data when available, with a fallback rate so the tool still works offline.</p>
+                            <div class="form-grid compact-grid">
+                                <label>Amount<input id="currency-amount" type="number" value="100"></label>
+                                <label>From
+                                    <select id="currency-from">
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                        <option value="NPR">NPR</option>
+                                        <option value="INR">INR</option>
+                                        <option value="JPY">JPY</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="CHF">CHF</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="AED">AED</option>
+                                        <option value="SGD">SGD</option>
+                                    </select>
+                                </label>
+                                <label>To
+                                    <select id="currency-to">
+                                        <option value="NPR">NPR</option>
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                        <option value="INR">INR</option>
+                                        <option value="JPY">JPY</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="CHF">CHF</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="AED">AED</option>
+                                        <option value="SGD">SGD</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button id="currency-submit" type="button">Convert Currency</button>
+                            <div id="currency-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="investment-tool" class="tool-card">
+                            <h3>Investment and SIP Planner</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Monthly Investment<input id="investment-monthly" type="number" value="500"></label>
+                                <label>Annual Return %<input id="investment-rate" type="number" value="10" step="0.1"></label>
+                                <label>Years<input id="investment-years" type="number" value="20"></label>
+                                <label>Initial Investment<input id="investment-initial" type="number" value="1000"></label>
+                            </div>
+                            <button id="investment-submit" type="button">Calculate Investment</button>
+                            <div id="investment-result" class="result hidden"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="health" class="category">
+                    <div class="section-heading">
+                        <span>Lifestyle</span>
+                        <h2>Health & Fitness</h2>
+                    </div>
+                    <div class="section-nav">
+                        <a href="#bmi-tool">BMI</a>
+                        <a href="#tdee-tool">TDEE</a>
+                        <a href="#body-tool">Body Metrics</a>
+                        <a href="#pregnancy-tool">Pregnancy</a>
+                    </div>
+
+                    <div class="card-grid">
+                        <article id="bmi-tool" class="tool-card">
+                            <h3>BMI and Healthy Weight</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Weight kg<input id="bmi-weight" type="number" value="78"></label>
+                                <label>Height cm<input id="bmi-height" type="number" value="178"></label>
+                            </div>
+                            <button id="bmi-submit" type="button">Calculate BMI</button>
+                            <div id="bmi-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="tdee-tool" class="tool-card">
+                            <h3>TDEE & Macro Coach</h3>
+                            <div class="form-grid">
+                                <label>Age<input id="tdee-age" type="number" value="29"></label>
+                                <label>Gender
+                                    <select id="tdee-gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </label>
+                                <label>Weight kg<input id="tdee-weight" type="number" value="78"></label>
+                                <label>Height cm<input id="tdee-height" type="number" value="178"></label>
+                                <label>Activity
+                                    <select id="tdee-activity">
+                                        <option value="Sedentary">Sedentary</option>
+                                        <option value="Light">Light</option>
+                                        <option value="Moderate" selected>Moderate</option>
+                                        <option value="Active">Active</option>
+                                        <option value="VeryActive">Very Active</option>
+                                        <option value="ExtraActive">Extra Active</option>
+                                    </select>
+                                </label>
+                                <label>Goal
+                                    <select id="tdee-goal">
+                                        <option value="Maintain">Maintain</option>
+                                        <option value="Cut">Cut</option>
+                                        <option value="Bulk">Bulk</option>
+                                    </select>
+                                </label>
+                                <label>Target Weight kg<input id="tdee-target" type="number" value="72"></label>
+                            </div>
+                            <button id="tdee-submit" type="button">Build Nutrition Plan</button>
+                            <div id="macro-chart" class="macro-chart hidden"></div>
+                            <div id="tdee-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="body-tool" class="tool-card">
+                            <h3>Body Metrics</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Gender
+                                    <select id="body-gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </label>
+                                <label>Height cm<input id="body-height" type="number" value="178"></label>
+                                <label>Neck cm<input id="body-neck" type="number" value="38"></label>
+                                <label>Waist cm<input id="body-waist" type="number" value="84"></label>
+                                <label>Hip cm<input id="body-hip" type="number" value="98"></label>
+                            </div>
+                            <button id="body-submit" type="button">Estimate Body Fat</button>
+                            <div id="body-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="pregnancy-tool" class="tool-card">
+                            <h3>Pregnancy Milestones</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Last Period<input id="pregnancy-date" type="date"></label>
+                            </div>
+                            <button id="pregnancy-submit" type="button">Check Milestones</button>
+                            <div id="pregnancy-result" class="result hidden"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="math" class="category">
+                    <div class="section-heading">
+                        <span>Academic</span>
+                        <h2>Math & Science</h2>
+                    </div>
+                    <div class="section-nav">
+                        <a href="#quick-math-tool">Quick Math</a>
+                        <a href="#percentage-tool">Percentage</a>
+                        <a href="#scientific-tool">Scientific</a>
+                        <a href="#gpa-tool">GPA</a>
+                        <a href="#fraction-tool">Fraction</a>
+                        <a href="#equation-tool">Equation</a>
+                        <a href="#unit-tool">Units</a>
+                        <a href="#graph-tool">Graph</a>
+                    </div>
+
+                    <div class="card-grid">
+                        <article id="quick-math-tool" class="tool-card">
+                            <h3>Quick-Type Math</h3>
+                            <p class="tool-copy">Try phrases like “20% of 500”, “root of 144”, or “4 + 6”.</p>
+                            <label>Question<input id="quick-math-query" type="text" value="20% of 500"></label>
+                            <button id="quick-math-submit" type="button">Solve</button>
+                            <div id="quick-math-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="percentage-tool" class="tool-card">
+                            <h3>Percentage Calculator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Mode
+                                    <select id="percentage-type">
+                                        <option value="WhatIsXPercentOfY">What is X percent of Y</option>
+                                        <option value="XIsWhatPercentOfY">X is what percent of Y</option>
+                                        <option value="PercentageChange">Percentage change</option>
+                                    </select>
+                                </label>
+                                <label>Value<input id="percentage-value" type="number" value="500"></label>
+                                <label>Percentage or Base<input id="percentage-base" type="number" value="20"></label>
+                            </div>
+                            <button id="percentage-submit" type="button">Calculate Percentage</button>
+                            <div id="percentage-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="unit-tool" class="tool-card">
+                            <h3>Unit Conversion Matrix</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Category
+                                    <select id="unit-category">
+                                        <option value="length">Length</option>
+                                        <option value="weight">Weight</option>
+                                        <option value="temperature">Temperature</option>
+                                        <option value="volume">Volume</option>
+                                        <option value="time">Time</option>
+                                        <option value="area">Area</option>
+                                        <option value="speed">Speed</option>
+                                        <option value="data">Data</option>
+                                        <option value="pressure">Pressure</option>
+                                        <option value="energy">Energy</option>
+                                    </select>
+                                </label>
+                                <label>Value<input id="unit-value" type="number" value="1"></label>
+                                <label>Unit
+                                    <select id="unit-name">
+                                        <option value="meter">Meter</option>
+                                        <option value="cm">Centimeter</option>
+                                        <option value="kilometer">Kilometer</option>
+                                        <option value="inch">Inch</option>
+                                        <option value="foot">Foot</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button id="unit-submit" type="button">Convert One to Many</button>
+                            <div id="unit-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="scientific-tool" class="tool-card">
+                            <h3>Scientific Calculator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Value<input id="scientific-value" type="number" value="45"></label>
+                                <label>Operation
+                                    <select id="scientific-operation">
+                                        <option value="sin">sin</option>
+                                        <option value="cos">cos</option>
+                                        <option value="tan">tan</option>
+                                        <option value="log10">log10</option>
+                                        <option value="ln">ln</option>
+                                        <option value="sqrt">sqrt</option>
+                                        <option value="pow">power</option>
+                                    </select>
+                                </label>
+                                <label>Second Value<input id="scientific-second" type="number" value="2"></label>
+                            </div>
+                            <button id="scientific-submit" type="button">Run Scientific Tool</button>
+                            <div id="scientific-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="gpa-tool" class="tool-card">
+                            <h3>GPA and Grade Calculator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Current Grade<input id="gpa-current" type="number" value="82"></label>
+                                <label>Current Weight %<input id="gpa-current-weight" type="number" value="70"></label>
+                                <label>Desired Grade<input id="gpa-desired" type="number" value="90"></label>
+                                <label>Final Exam Weight %<input id="gpa-final-weight" type="number" value="30"></label>
+                            </div>
+                            <button id="gpa-submit" type="button">Check Needed Score</button>
+                            <div id="gpa-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="fraction-tool" class="tool-card">
+                            <h3>Fraction Solver</h3>
+                            <div class="form-grid compact-grid">
+                                <label>First Numerator<input id="fraction-first-num" type="number" value="1"></label>
+                                <label>First Denominator<input id="fraction-first-den" type="number" value="2"></label>
+                                <label>Operation
+                                    <select id="fraction-operation">
+                                        <option value="add">Add</option>
+                                        <option value="subtract">Subtract</option>
+                                        <option value="multiply">Multiply</option>
+                                        <option value="divide">Divide</option>
+                                    </select>
+                                </label>
+                                <label>Second Numerator<input id="fraction-second-num" type="number" value="1"></label>
+                                <label>Second Denominator<input id="fraction-second-den" type="number" value="3"></label>
+                            </div>
+                            <button id="fraction-submit" type="button">Solve Fraction</button>
+                            <div id="fraction-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="equation-tool" class="tool-card">
+                            <h3>Equation Solver</h3>
+                            <div class="form-grid compact-grid">
+                                <label>a<input id="equation-a" type="number" value="2"></label>
+                                <label>b<input id="equation-b" type="number" value="-8"></label>
+                            </div>
+                            <button id="equation-submit" type="button">Solve ax + b = 0</button>
+                            <div id="equation-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="graph-tool" class="tool-card">
+                            <h3>Interactive Quadratic Graph</h3>
+                            <div class="form-grid compact-grid">
+                                <label>a<input id="graph-a" type="number" value="1" step="0.1"></label>
+                                <label>b<input id="graph-b" type="number" value="0" step="0.1"></label>
+                                <label>c<input id="graph-c" type="number" value="0" step="0.1"></label>
+                                <label>Min X<input id="graph-min-x" type="number" value="-5"></label>
+                                <label>Max X<input id="graph-max-x" type="number" value="5"></label>
+                            </div>
+                            <button id="graph-submit" type="button">Render Graph</button>
+                            <div id="graph-canvas" class="graph-surface hidden"></div>
+                            <div id="graph-result" class="result hidden"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="utility" class="category">
+                    <div class="section-heading">
+                        <span>Utility</span>
+                        <h2>Professional & Technical</h2>
+                    </div>
+                    <div class="section-nav">
+                        <a href="#age-tool">Age</a>
+                        <a href="#password-tool">Password</a>
+                        <a href="#timezone-tool">Time Zone</a>
+                        <a href="#toolbox-tool">Developer</a>
+                        <a href="#date-tool">Date Tools</a>
+                        <a href="#construction-tool">Construction</a>
+                    </div>
+
+                    <div class="card-grid">
+                        <article id="age-tool" class="tool-card">
+                            <h3>Age and Date Calculator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Birth Date<input id="age-birth" type="date"></label>
+                                <label>Compare Date<input id="age-compare" type="date"></label>
+                            </div>
+                            <button id="age-submit" type="button">Calculate Age</button>
+                            <div id="age-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="password-tool" class="tool-card">
+                            <h3>Password Generator</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Length<input id="password-length" type="number" value="16"></label>
+                                <label>Uppercase
+                                    <select id="password-uppercase">
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </label>
+                                <label>Numbers
+                                    <select id="password-numbers">
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </label>
+                                <label>Symbols
+                                    <select id="password-symbols">
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button id="password-submit" type="button">Generate Password</button>
+                            <div id="password-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="timezone-tool" class="tool-card">
+                            <h3>Time Zone Converter</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Date Time<input id="timezone-datetime" type="datetime-local"></label>
+                                <label>From
+                                    <select id="timezone-from">
+                                        <option value="UTC">UTC</option>
+                                        <option value="America/New_York">New York</option>
+                                        <option value="Europe/London">London</option>
+                                        <option value="Asia/Kathmandu">Kathmandu</option>
+                                        <option value="Asia/Dubai">Dubai</option>
+                                        <option value="Asia/Kolkata">India</option>
+                                        <option value="Asia/Tokyo">Tokyo</option>
+                                        <option value="Australia/Sydney">Sydney</option>
+                                    </select>
+                                </label>
+                                <label>To
+                                    <select id="timezone-to">
+                                        <option value="Asia/Kathmandu">Kathmandu</option>
+                                        <option value="UTC">UTC</option>
+                                        <option value="America/New_York">New York</option>
+                                        <option value="Europe/London">London</option>
+                                        <option value="Asia/Dubai">Dubai</option>
+                                        <option value="Asia/Kolkata">India</option>
+                                        <option value="Asia/Tokyo">Tokyo</option>
+                                        <option value="Australia/Sydney">Sydney</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button id="timezone-submit" type="button">Convert Time Zone</button>
+                            <div id="timezone-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="toolbox-tool" class="tool-card">
+                            <h3>Developer Toolbox</h3>
+                            <label>Base64 / JSON text<textarea id="toolbox-text" rows="8">{ "hello": "world" }</textarea></label>
+                            <div class="button-row">
+                                <button id="base64-encode-submit" type="button">Base64 Encode</button>
+                                <button id="base64-decode-submit" class="ghost-button" type="button">Base64 Decode</button>
+                                <button id="json-format-submit" class="ghost-button" type="button">Format JSON</button>
+                            </div>
+                            <div id="toolbox-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="date-tool" class="tool-card">
+                            <h3>Epoch & Business Days</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Epoch<input id="epoch-input" type="number" value="1711392000"></label>
+                                <label>Start Date<input id="business-start" type="date"></label>
+                                <label>End Date<input id="business-end" type="date"></label>
+                            </div>
+                            <div class="button-row">
+                                <button id="epoch-submit" type="button">Convert Epoch</button>
+                                <button id="business-submit" class="ghost-button" type="button">Business Days</button>
+                            </div>
+                            <div id="date-tools-result" class="result hidden"></div>
+                        </article>
+
+                        <article id="construction-tool" class="tool-card">
+                            <h3>Construction Estimators</h3>
+                            <div class="form-grid compact-grid">
+                                <label>Concrete Length ft<input id="concrete-length" type="number" value="20"></label>
+                                <label>Concrete Width ft<input id="concrete-width" type="number" value="10"></label>
+                                <label>Concrete Depth in<input id="concrete-depth" type="number" value="4"></label>
+                                <label>Floor Length ft<input id="tile-floor-length" type="number" value="12"></label>
+                                <label>Floor Width ft<input id="tile-floor-width" type="number" value="10"></label>
+                                <label>Tile Length in<input id="tile-length" type="number" value="12"></label>
+                                <label>Tile Width in<input id="tile-width" type="number" value="12"></label>
+                                <label>Waste %<input id="tile-waste" type="number" value="10"></label>
+                            </div>
+                            <div class="button-row">
+                                <button id="concrete-submit" type="button">Estimate Concrete</button>
+                                <button id="tile-submit" class="ghost-button" type="button">Estimate Tiles</button>
+                            </div>
+                            <div id="construction-result" class="result hidden"></div>
+                        </article>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <section class="info-section">
+            <div class="info-intro">
+                <span class="eyebrow">Why CalculatorD</span>
+                <h2>One practical calculator workspace for everyday decisions.</h2>
+                <p>CalculatorD is designed to help people understand the purpose of the page quickly, use the tools easily on mobile, and move between sections without getting lost.</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Fast to understand</strong>
+                    <p>Each calculator group is separated clearly so users can find the right tool quickly.</p>
+                </div>
+                <div class="info-item">
+                    <strong>Built for mobile</strong>
+                    <p>Navigation, buttons, spacing, and forms are shaped to work better on smaller screens.</p>
+                </div>
+                <div class="info-item">
+                    <strong>Safer flow</strong>
+                    <p>Request locking, clearer actions, and predictable interaction patterns reduce mistakes.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <section id="about" class="footer-section">
+                <h2>About Us</h2>
+                <p>CalculatorD is developed by Quantum Leaf Automation. We build practical software that helps people finish real work with less friction and more confidence.</p>
+                <p>This project is shaped around clear structure, fast understanding, and a more professional user experience on both desktop and mobile.</p>
+                <p><strong>Contact:</strong> For custom versions, team features, or private API integrations, reach out through your Quantum Leaf Automation contact channel.</p>
+            </section>
+
+            <section class="footer-section">
+                <h2>Security and Trust</h2>
+                <p>We are careful about trust. The app is structured to reduce repeated requests, keep interactions predictable, and present information clearly.</p>
+                <p>The platform is also ready for stronger account controls and API key support in a future version.</p>
+            </section>
+        </footer>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

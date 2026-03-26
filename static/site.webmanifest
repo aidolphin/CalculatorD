@@ -1,0 +1,9 @@
+{
+  "name": "CalculatorD",
+  "short_name": "CalculatorD",
+  "description": "CalculatorD is a practical web app for mortgage, health, math, and utility calculators.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0f6adf"
+}
