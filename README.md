@@ -28,7 +28,7 @@ Important environment variables:
 - `ROCKET_ADDRESS=0.0.0.0`
 - `ROCKET_PORT=8000`
 - `ROCKET_SECRET_KEY=...`
-- `SITE_URL=https://your-domain.com`
+- `SITE_URL=https://calculatord.dolphinsagar9.workers.dev/`
 
 In debug mode the app now uses a stable development secret key automatically, so the Rocket warning is gone locally.
 In release mode you should always set a real `ROCKET_SECRET_KEY`.
