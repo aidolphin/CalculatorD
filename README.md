@@ -45,6 +45,36 @@ cargo run --release -p backend
 
 There is also a `Dockerfile` for container deployment.
 
+## Cloudflare hosting
+
+This repo now includes a separate Worker project in `cloudflare-worker/`.
+
+Important architecture note:
+
+- The current Rust backend uses Rocket.
+- Cloudflare Workers run Rust as WebAssembly with the `worker` runtime.
+- That means the Rocket server itself should not be deployed directly as a Worker.
+
+The Worker package is now set up to run the calculator API directly on Cloudflare Workers free hosting:
+
+- serve the existing `static/` frontend from Cloudflare
+- expose `/api/hello` and `/api/health`
+- execute the calculator endpoints inside the Worker
+- add CORS headers for your Worker domain
+
+Quick start:
+
+```bash
+cd cloudflare-worker
+npm install
+npx wrangler login
+cp .dev.vars.example .dev.vars
+npx wrangler deploy
+```
+
+Your current Worker domain can be set through `APP_ORIGIN`.
+The main app keeps its Rocket backend for local/native hosting, but the Cloudflare Worker now has its own calculator routes so the deployed free-hosting version can work without a separate API server.
+
 ## SEO and growth work already added
 
 - Search-friendly page title and meta description
@@ -74,6 +104,7 @@ To turn this into a real traffic and earning engine, the next product steps shou
 - connect analytics and search console
 - add conversion points like newsletter signup, calculator comparison pages, or partner offers
 - add ad and affiliate placements carefully without making the UI feel cheap
+- build a shared calculators core so you can publish the same tools across your main site, edge worker, and future API products
 
 ## Project structure
 

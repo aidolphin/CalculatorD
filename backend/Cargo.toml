@@ -4,7 +4,6 @@ version = "1.0.0"
 edition = "2021"
 
 [dependencies]
-# Rocket 0.5.1 is the latest stable version for developer-friendly APIs
 rocket = { version = "0.5.1", features = ["json", "secrets"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

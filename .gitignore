@@ -1,1 +1,12 @@
 /target
+cloudflare-worker/.dev.vars
+cloudflare-worker/target
+cloudflare-worker/node_modules
+cloudflare-worker/build
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

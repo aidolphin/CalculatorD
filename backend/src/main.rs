@@ -22,7 +22,6 @@ fn configured_figment() -> Figment {
     if std::env::var("ROCKET_SECRET_KEY").is_ok() || !cfg!(debug_assertions) {
         figment
     } else {
-        // Keep local development predictable while still requiring a real secret in release.
         figment.merge(("secret_key", DEV_SECRET_KEY))
     }
 }
